@@ -1,38 +1,276 @@
-.App {
-  text-align: center;
+:root{
+    --clr-primary-blue:#293264;
+    --clr-secondary-blue:#4D5B9E;
+    --clr-primary-white:#F5F7FB;
+    --clr-bg-light:#D6DBF5;
+    --clr-lemony-medium: #FFFAD1;
+    --clr-baby-medium: #DEEBF8;
+    --clr-bg-selected:#cbd1f0;
+    --clr-wrong:#F8BCBC;
+    --clr-correct:#94D7A2;
+    --ff-primary:'Karla';
+    --ff-secondary:'Poppins';
+    --position: min(-35px, max(calc( -14vw ), -140px));
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: var(--ff-primary) , sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
 }
 
-.App-link {
-  color: #61dafb;
+/* Set core root defaults */
+html:focus-within {
+    scroll-behavior: smooth;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Set core body defaults */
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Util classes */
+
+.container {
+    padding-inline: 20px;
+    margin-inline: auto;
+    min-height: 100vh;
+}
+
+.flex {
+    display: flex;
+    gap: var(--gap, 1em);
+}
+
+.grid {
+    display: grid;
+    gap: var(--gap, 1em);
+}
+
+.btn{
+    border: none;
+    cursor: pointer;
+    padding: 20px 40px;
+}
+
+/* Start components styling */
+
+.start{
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--clr-primary-white);
+    width: 100vw;
+    overflow: hidden;
+}
+
+.start--content{
+    text-align: center;
+}
+
+.start--title{
+    color: var(--clr-primary-blue);
+    font-weight: 700;
+    font-size: 2.3em;
+}
+
+.start--desc{
+    color: var(--clr-primary-blue);
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin-top: 7px;
+}
+
+.start--btn{
+    background-color: var(--clr-secondary-blue);
+    font-family: var(--ff-secondary);
+    border-radius: 15px;
+    padding: 16px 38px;
+    color: var(--clr-primary-white);
+    margin-top: 29px;
+}
+
+/* Side designs */
+
+.rectangle {
+    position: absolute;
+    z-index: 100;
+    top: var(--position);
+    right: var(--position);
+    width: clamp(120px, 25vw + 1em, 300px);
+    aspect-ratio: 1;
+    background: var(--clr-lemony-medium);
+    border-radius: clamp(50px, 5vw + 1em, 140px);
+    transform: rotate(45deg);
+}
+
+.circle {
+    position: absolute;
+    z-index: 100;
+    bottom: var(--position);
+    left: var(--position);
+    width: clamp(120px, 25vw + 1em, 300px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--clr-baby-medium);
+}
+
+/* @media screen and () */
+
+/* Styling main component */
+
+.main{
+    justify-content: flex-start;
+    align-items: center;
+    padding: 50px 70px;
+    background-color: var(--clr-primary-white);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.main--content{
+    max-width: 50em;
+    margin-block: 2em;
+}
+
+.question--container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.rule{
+    display: block;
+    background-color: var(--clr-secondary-blue);
+    color: var(--clr-secondary-blue);
+    height: 0.1px;
+    width: 90%;
+    margin-block: 1em;
+}
+
+.question{
+    font-size: 1.2em;
+    font-weight: 700;
+    font-family: var(--ff-secondary);
+    color: var(--clr-primary-blue);
+}
+
+.options{
+    list-style: none;
+    padding: 0;
+}
+
+.options > .option{
+    position: relative;
+    z-index: 999;
+    color: var(--clr-primary-blue);
+    font-weight: 500;
+    font-size: 0.95em;
+    /* background: transparent; */
+    padding: 0.25em 1em;
+    border: 0.794239px solid var(--clr-secondary-blue);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:600px){
+    .options{
+        flex-direction: column;
+    }
+    .option{
+        width: max-content;
+    }
+    .main{
+        padding: 30px 40px;
+    }
+}
+
+.main--btn--container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main--btn--container p{
+    color: var(--clr-primary-blue);
+    font-weight: 700;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.main--btn{
+    background-color: var(--clr-secondary-blue);
+    color: var(--clr-primary-white);
+    font-size: 1.3em;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 11px 22px;
+}
+
+.loading{
+    text-align: center;
 }
