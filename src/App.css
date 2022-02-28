@@ -272,5 +272,8 @@ select {
 }
 
 .loading{
-    text-align: center;
+    margin-inline:auto;
+    font-size: 2rem;
+    color: var(--clr-primary-blue);
+    letter-spacing: 2px;
 }
