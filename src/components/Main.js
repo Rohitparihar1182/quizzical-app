@@ -12,10 +12,8 @@ export default function Main(){
     async function fetchApi(){
         const response=await fetch('https://opentdb.com/api.php?amount=5&category=9&difficulty=easy')
         const apiData=await response.json()
-        setTimeout(()=>{
-            setData(ConvertData(apiData.results));
-            setIsLoading(false)
-        }, 3000)
+        setData(ConvertData(apiData.results));
+        setIsLoading(false)
     }
 
     React.useEffect(()=>{
