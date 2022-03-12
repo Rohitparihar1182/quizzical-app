@@ -119,10 +119,11 @@ select {
 .start{
     position: relative;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     background-color: var(--clr-primary-white);
     width: 100vw;
     overflow: hidden;
+    flex-direction: column;
 }
 
 .start--content{
@@ -149,6 +150,36 @@ select {
     padding: 16px 38px;
     color: var(--clr-primary-white);
     margin-top: 29px;
+    margin-inline: auto;
+}
+
+.data-input{
+    flex-direction: column;
+    max-width: 600px;
+}
+
+.data-input > label{
+    color: var(--clr-secondary-blue);
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.data-input > input, 
+.data-input > select{
+    text-indent: 5px;
+    padding: 3px;
+    font-size: 1.1em;
+}
+
+@media screen and (min-width: 800px) {
+    .data-input{
+        margin-left: 4em;
+    }
+}
+@media screen and (min-width: 1000px) {
+    .data-input{
+        margin-left: 5em;
+    }
 }
 
 /* Side designs */
@@ -176,7 +207,6 @@ select {
     background-color: var(--clr-baby-medium);
 }
 
-/* @media screen and () */
 
 /* Styling main component */
 
@@ -253,6 +283,7 @@ select {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .main--btn--container p{
@@ -271,7 +302,24 @@ select {
     padding: 11px 22px;
 }
 
-.loading{
+.reset-btn-container{
+    margin-top: 1em;
+    justify-content: center;
+}
+
+.reset--btn{
+    background-color: var(--clr-secondary-blue);
+    color: var(--clr-primary-white);
+    font-size: 1.3em;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 11px 22px;
+}
+
+/* loading / error page style */
+
+.loading,
+.error{
     margin-inline:auto;
     font-size: 2rem;
     color: var(--clr-primary-blue);

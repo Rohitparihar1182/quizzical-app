@@ -32,7 +32,7 @@ export default function ConvertData(rawData){
         mainData[index]={
             id:nanoid(),
             question:correctQuestion(item.question),
-            options:create_options(item.incorrect_answers, item.correct_answer),
+            options: create_options(item.incorrect_answers, item.correct_answer),
             correct_answer:item.correct_answer,
             selected:""
         }

@@ -2,23 +2,35 @@ import React from 'react';
 import ConvertData from './Util'
 import Question from './Question';
 import Loading from './Loading';
+import GetUrl from './GetUrl';
+import Error from './Error';
 
-export default function Main(){
-    const [data, setData] = React.useState([])
-    const [checked, setChecked] = React.useState(false)
-    const [score, setScore] = React.useState(0)
-    const [isLoading, setIsLoading] = React.useState(true)
-
-    async function fetchApi(){
-        const response=await fetch('https://opentdb.com/api.php?amount=5&category=9&difficulty=easy')
-        const apiData=await response.json()
-        setData(ConvertData(apiData.results));
-        setIsLoading(false)
-    }
+export default function Main({choice, resetQuiz}){
+    const [data, setData] = React.useState([]);
+    const [checked, setChecked] = React.useState(false);
+    const [score, setScore] = React.useState(0);
+    const [isLoading, setIsLoading] = React.useState(true);
+    const [errorOccured, setErrorOccured] = React.useState(false);
+    const [changeQuestion, setChangeQuestion] = React.useState(true);
 
     React.useEffect(()=>{
-        fetchApi()
-    },[])
+        async function fetchApi(){
+            try{
+                const url = GetUrl(choice);
+                const response=await fetch(url)
+                const apiData=await response.json()
+                setData(ConvertData(apiData.results));
+                setIsLoading(false)
+            }catch(err){
+                if(err)
+                    setErrorOccured(true);
+            }
+        }
+        if(changeQuestion){
+            fetchApi();
+            setChangeQuestion(false);
+        }
+    },[choice, changeQuestion])
 
     function selectAnswer(id,answer){
         setData(prevData=>{
@@ -44,7 +56,7 @@ export default function Main(){
             setChecked(true)
         }
         else{
-            fetchApi()
+            setChangeQuestion(true);
             setChecked(false)
             setScore(0)
             setIsLoading(true)
@@ -54,12 +66,15 @@ export default function Main(){
     return (
         <div className="main flex">
             <div className="rectangle"></div>
-            {isLoading ? 
+            {errorOccured ?
+                <Error /> :
+                isLoading ? 
                 <Loading /> : 
                 <div className="main--content">
-                    {data.map(item=>{
+                    {data.map((item, index)=>{
                         return <Question 
                             key={item.id}
+                            index={index}
                             id={item.id}
                             question={item.question} 
                             options={item.options}
@@ -73,13 +88,22 @@ export default function Main(){
                         <p
                             style={checked?{marginRight:'20px'}:{}}
                         >
-                            {checked?`You scored ${score}/5 correct answer`:''}
+                            {checked?`You scored ${score}/${data.length} correct answer`:''}
                         </p>
                         <button
                             className="btn main--btn"
                             onClick={checkAnswers}
                         >
                             {checked?"Play again":"Check answers"}
+                        </button>
+                    </div>
+                    <div className="flex reset-btn-container">
+                        <button 
+                            style={!checked ? {display : 'none'} : {display : "block"}} 
+                            className="btn reset--btn"
+                            onClick={()=>resetQuiz(false)}
+                        >
+                            Reset Settings
                         </button>
                     </div>
                 </div>

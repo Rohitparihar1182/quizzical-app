@@ -13,7 +13,7 @@ const falseAns={
 export default function Question(props){
     return (
         <div className="question--container">
-            <h3 className='question'>{props.question}</h3>
+            <h3 className='question'>{props.index+1}. {props.question}</h3>
             <ul className='options flex'>
                 {props.options.map((option,index)=>{
                     return <li key={index}
