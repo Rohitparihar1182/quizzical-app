@@ -1,5 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import data from '../data/data.json';
+// import data from '../data/data.json
+// I don't know why it is not working when I am deploying the app
+const data = {
+    "categories": [
+        "any",
+        "General Knowledge",
+        "Entertainment: Books",
+        "Entertainment: Film",
+        "Entertainment: Music",
+        "Entertainment: Musicals & Theatres",
+        "Entertainment: Television",
+        "Entertainment: Video Games",
+        "Entertainment: Board Games",
+        "Science & Nature",
+        "Science: Computers",
+        "Science: Mathematics",
+        "Mythology",
+        "Sports",
+        "Geography",
+        "History",
+        "Politics",
+        "Art",
+        "Celebrities",
+        "Animals",
+        "Vehicles",
+        "Entertainment: Comics",
+        "Science: Gadgets",
+        "Entertainment: Japanese Anime & Manga",
+        "Entertainment: Cartoon & Animations"
+    ],
+    "types" : [
+        {
+            "val" : "any",
+            "name" : "any"
+        },
+        {
+            "val" : "multiple", 
+            "name" : "Multiple Choice"
+        },
+        {
+            "val" : "boolean",
+            "name" : "True / False"
+        }
+    ],
+    "difficulties" : ["any", "easy", "medium", "hard"]
+}
 
 export default function Start({startQuiz, choice, dispatch}){
     const [categories, setCategories] = useState([]);
