@@ -6,8 +6,13 @@
     --clr-lemony-medium: #FFFAD1;
     --clr-baby-medium: #DEEBF8;
     --clr-bg-selected:#cbd1f0;
+    --clr-light-black: #444;
+    --clr-light-black-2: #999; 
     --clr-wrong:#F8BCBC;
     --clr-correct:#94D7A2;
+    --size-loader: 9px;
+    --width-loader: 80px;
+    --loader-speed: 700ms;
     --ff-primary:'Karla';
     --ff-secondary:'Poppins';
     --position: min(-35px, max(calc( -14vw ), -140px));
@@ -276,6 +281,10 @@ select {
     .main{
         padding: 30px 40px;
     }
+    .loader{
+        --width-loader: 60px;
+        --size-loader: 7px;
+    }
 }
 
 .main--btn--container{
@@ -322,6 +331,29 @@ select {
 .error{
     margin-inline:auto;
     font-size: 2rem;
-    color: var(--clr-primary-blue);
     letter-spacing: 2px;
+}
+
+.error{
+    color: var(--clr-primary-blue);
+}
+
+.loading{
+    flex-direction: column;
+    align-items: center;
+    color: var(--clr-light-black);
+}
+
+.loader{
+    border: var(--size-loader) solid var(--clr-light-black-2);
+    border-top: var(--size-loader) solid var(--clr-light-black); /* Blue */
+    border-radius: 50%;
+    width: var(--width-loader);
+    aspect-ratio: 1;
+    animation: spin var(--loader-speed) linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
