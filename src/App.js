@@ -1,7 +1,8 @@
 import React, { useReducer, useState } from 'react';
 import './App.css';
 import Start from './components/Start';
-import Main from './components/Main.js'
+import Main from './components/Main.js';
+import { Route, Routes} from 'react-router';
 
 function reducer(prevState, {value, e}){
     const newState = {...prevState}
@@ -25,22 +26,19 @@ function reducer(prevState, {value, e}){
 }
 
 export default function App(){
-    const [start, setStart] = useState(false);
     const [choice, dispatch] = useReducer(reducer, {
         difficulty: 'any',
         type: 'any',
         category: 'any',
         amount: 5
     })
-    function handleStart(val){
-        setStart(val);
-    }
+    
     return (
         <div className="app">
-            {!start ? 
-                <Start startQuiz={handleStart} choice={choice} dispatch={dispatch}/> : 
-                <Main choice={choice} resetQuiz={handleStart}/>
-            }
+            <Routes>
+                <Route exact path="/" element={<Start choice={choice} dispatch={dispatch} /> }/>
+                <Route path="quiz" element={<Main choice={choice} />}/>
+            </Routes>
         </div>
     )
 }

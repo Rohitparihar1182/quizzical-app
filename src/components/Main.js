@@ -4,8 +4,10 @@ import Question from './Question';
 import Loading from './Loading';
 import GetUrl from './GetUrl';
 import Error from './Error';
+import { useNavigate } from 'react-router';
 
-export default function Main({choice, resetQuiz}){
+export default function Main({choice}){
+    const navigator = useNavigate();
     const [data, setData] = React.useState([]);
     const [checked, setChecked] = React.useState(false);
     const [score, setScore] = React.useState(0);
@@ -101,7 +103,7 @@ export default function Main({choice, resetQuiz}){
                         <button 
                             style={!checked ? {display : 'none'} : {display : "block"}} 
                             className="btn reset--btn"
-                            onClick={()=>resetQuiz(false)}
+                            onClick={()=>navigator("/")}
                         >
                             Reset Settings
                         </button>
@@ -112,4 +114,10 @@ export default function Main({choice, resetQuiz}){
             <div className="circle"></div>
         </div>
     )
+}
+
+Main.defaultProps = {
+    choice : {
+        amount: 5
+    }
 }

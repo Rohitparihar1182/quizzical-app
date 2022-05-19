@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 // import data from '../data/data.json
 // I don't know why it is not working when I am deploying the app
 const data = {
@@ -46,7 +47,8 @@ const data = {
     "difficulties" : ["any", "easy", "medium", "hard"]
 }
 
-export default function Start({startQuiz, choice, dispatch}){
+export default function Start({choice, dispatch}){
+    const navigator = useNavigate();
     const [categories, setCategories] = useState([]);
     const [types, setTypes] = useState([]);
     const [difficulties, setDifficulties] = useState([]);
@@ -56,7 +58,7 @@ export default function Start({startQuiz, choice, dispatch}){
             alert('Enter the correct no. of questions');
             return;
         }
-        startQuiz(true);
+        navigator("/quiz");
     }
 
     useEffect(()=>{
