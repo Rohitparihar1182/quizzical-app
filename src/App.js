@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer } from 'react';
 import './App.css';
 import Start from './components/Start';
 import Main from './components/Main.js';
