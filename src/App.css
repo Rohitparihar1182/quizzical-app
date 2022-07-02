@@ -341,12 +341,12 @@ select {
 .loading{
     flex-direction: column;
     align-items: center;
-    color: var(--clr-light-black);
+    color: var(--clr-primary-blue);
 }
 
 .loader{
-    border: var(--size-loader) solid var(--clr-light-black-2);
-    border-top: var(--size-loader) solid var(--clr-light-black); /* Blue */
+    border: var(--size-loader) solid var(--clr-secondary-blue);
+    border-top: var(--size-loader) solid var(--clr-primary-blue); /* Blue */
     border-radius: 50%;
     width: var(--width-loader);
     aspect-ratio: 1;
